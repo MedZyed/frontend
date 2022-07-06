@@ -53,3 +53,23 @@ In this case, we should call the URL http://localhost:4205/greeting
 ```
 kubectl port-forward service/frontend-node 4205:80
 ```
+
+# Connecting backend and frontend
+***
+
+### Create deployment with configuration file
+After cleaning up the old deployment, run below commands (in the project's root path) :
+```
+kubectl apply -f ./scripts/frontend-deployment.yaml
+```
+
+### Create service with configuration file
+```
+kubectl apply -f ./scripts/frontend-service.yaml
+```
+
+### Backend Sanity Check
+We will create a port forwarding to the frontend service to be able to call access the UI :
+```
+kubectl port-forward service/docker-k8s-demo-frontend-svc 4205:80
+```
