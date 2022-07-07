@@ -15,6 +15,7 @@ COPY /dist/angular-tour-of-heroes /usr/share/nginx/html
 ### Build docker image (and tag)
 ```
 docker build --tag=fsouayah/demo-frontend:latest .
+docker build -f Dockerfile-dev --tag=fsouayah/demo-frontend:1.1.0-dev .
 ```
 
 ### Running docker image

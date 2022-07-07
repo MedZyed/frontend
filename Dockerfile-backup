@@ -1,0 +1,12 @@
+FROM alpine as builder_prod
+ONBUILD COPY nginx.conf /nginx.conf
+
+FROM alpine as builder_dev
+ONBUILD COPY nginx-dev.conf /nginx.conf
+
+FROM nginx as final
+ARG BUILD_ENV
+COPY --from=builder_${BUILD_ENV} /nginx.conf /etc/nginx/nginx.conf
+COPY /dist/angular-tour-of-heroes /usr/share/nginx/html
+
+# docker build --build-arg BUILD_ENV=dev --tag=fsouayah/demo-frontend:1.1.0 .
